@@ -10,6 +10,8 @@ public class Player {
     String username;
     Image pfp;
 
+    int blackSeconds, whiteSeconds = 600;
+
     private ArrayList<Piece> capturedPieces = new ArrayList<>();
 
     public ArrayList<Piece> getCapturedPieces(){

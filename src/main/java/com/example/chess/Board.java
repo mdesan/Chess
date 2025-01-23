@@ -14,7 +14,7 @@ import javax.swing.text.Element;
 
 public class Board extends GridPane {
 
-    public Square [][] squares = new Square[8][8];
+    public static Square [][] squares = new Square[8][8];
 
     public String lightStyle ="-fx-base: white;";
     public String darkStyle ="-fx-base: #FA8072";
@@ -46,6 +46,10 @@ public void createBoard(){
     for(int i =0;i<8;i++){
         for(int j =0;j<8;j++){
             Square square = new Square();
+
+            square.setX(i);
+            square.setY(j);
+
             if((i+j)%2==0){
                 square.setStyle(lightStyle);
                 square.setToLightSquare();
@@ -106,6 +110,7 @@ public void createBoard(){
 
     initPieces();
 
+
 //            squares[5][5].removePiece();
 //    for(int i = 0;i<8;i++){
 //        for(int j =0;j<8;j++){
@@ -134,11 +139,16 @@ public void initPieces(){
             if(j==6){
                 squares[i][j].setPiece(new Pawn("white"));
             }
+
             int finalI = i;
             int finalJ = j;
 
 
             squares[i][j].setOnMouseClicked(event -> movePiece(squares[finalI][finalJ]));
+
+            squares[5][2].setText("5 2");
+            squares[6][4].setText("6 4");
+            squares[5][4].setText("" + squares[5][4].getX() + " " + squares[5][4].getY());
         }
     }
 
@@ -184,6 +194,10 @@ public void initPieces(){
     //white king
     squares[4][0].setPiece(new King("black"));
 
+
+
+
+
 }
 
 
@@ -198,6 +212,9 @@ public void resetBoard(){
     }
     this.selectedSquare=null;
     removeSelected();
+    this.whitePlayer.getCapturedPieces().clear();
+    this.blackPlayer.getCapturedPieces().clear();
+    UI.removeCapturedPieces();
 
     if(Game.getTurn()==-1){
         Game.setTurn();
@@ -239,6 +256,7 @@ public void resetBoard(){
                 square.select();
                 selectedSquare=null;
                 removeYellowBorder();
+                Game.setTurn();
             }
         }
 
@@ -288,17 +306,30 @@ public void resetBoard(){
 
             if(square.getPiece().getColor().equals("white")){
                 this.blackPlayer.getCapturedPieces().add(square.getPiece());
+                UI.updateBlackCaptures(square.getPiece());
             }
             else{
                 this.whitePlayer.getCapturedPieces().add(square.getPiece());
+                UI.updateWhiteCaptures(square.getPiece());
             }
-
 
         }
 
         public String getCurrentStyle(){
             return this.currentStyle;
         }
+
+        public Player getWhitePlayer(){
+            return this.whitePlayer;
+        }
+        public Player getBlackPlayer(){
+            return this.blackPlayer;
+        }
+
+
+
+
+
 
         public static void main (String[] args){
 

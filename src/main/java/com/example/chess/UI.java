@@ -16,9 +16,13 @@ import java.awt.*;
 
 import java.beans.EventHandler;
 
+import static com.example.chess.Board.squares;
+
 
 public class UI extends Application {
 
+   private static HBox blacksCaptures;
+   private static HBox whitesCaptures;
 
 
 
@@ -58,10 +62,12 @@ public class UI extends Application {
         blackPfpFrame.setFitWidth(50);
         leftSpacer.setPrefWidth(200);
 
-        Label blacksCaptures = new Label();
+        //captured pieces displayed
+        blacksCaptures = new HBox();
         blacksCaptures.setPrefWidth(650);
         blacksCaptures.setPrefHeight(50);
-        blacksCaptures.setStyle("-fx-background-color: blue;");
+//        blacksCaptures.setStyle("-fx-background-color: blue;");
+        blacksCaptures.setAlignment(Pos.CENTER_LEFT); //use center left for alignment
 
 
 
@@ -73,17 +79,18 @@ public class UI extends Application {
         rightSpacer.setPrefWidth(200);
         bottomPanel.setPrefHeight(50);
         bottomPanel.setStyle("-fx-background-color: silver;");
-        Label whiteUser = new Label("  parted");
+        Label whiteUser = new Label("  desan");
         whiteUser.setPrefWidth(70);
         Image whitePfp = new Image(getClass().getResource("/pieces/cgPfp.jpeg").toString());
         ImageView whitePfpFrame = new ImageView(whitePfp);
         whitePfpFrame.setFitHeight(50);
         whitePfpFrame.setFitWidth(50);
 
-        Label whitesCaptures = new Label();
+        //captured pieces displayed
+        whitesCaptures = new HBox();
         whitesCaptures.setPrefHeight(50);
         whitesCaptures.setPrefWidth(650);
-        whitesCaptures.setStyle("-fx-background-color: blue;");
+//        whitesCaptures.setStyle("-fx-background-color: blue;");
 
 
 
@@ -99,6 +106,13 @@ public class UI extends Application {
 
 
         //left panel-------------------------------------------------------------------------------------
+
+        Label result = new Label( "WHITE WINS!");
+        result.setPrefWidth(150);
+        result.setPrefHeight(50);
+        result.setStyle("-fx-text-fill: black;-fx-font-style: italic;-fx-font-size: 12");
+
+
         Button reset = new Button("RESET BOARD");
         reset.setPrefSize(150,50);
         reset.setStyle("-fx-base: gray;");
@@ -110,6 +124,10 @@ public class UI extends Application {
         Button resign = new Button("RESIGN");
         resign.setPrefSize(150,50);
         resign.setStyle("-fx-base: gray;");
+
+        resign.setOnMouseClicked(event ->{
+
+        });
 
 
 
@@ -131,10 +149,15 @@ public class UI extends Application {
         Region spacer = new Region();
         Region topSpacer = new Region();
 
-//        topSpacer.setPrefHeight(100);
-        spacer.setPrefHeight(500);
+        topSpacer.setPrefHeight(100);
+        spacer.setPrefHeight(400);
 //        leftPanel.setVgrow(spacer, Priority.ALWAYS);
-        leftPanel.getChildren().addAll(topSpacer,reset,resign,spacer,blackClock,whiteClock);
+        leftPanel.getChildren().addAll(topSpacer,result,reset,resign,spacer,blackClock,whiteClock);
+
+
+
+
+
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -150,11 +173,31 @@ public class UI extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+
+    //call these methods in the board class when a capture happens
+    public static void updateWhiteCaptures(Piece piece){
+        ImageView view = new ImageView(piece.getImage());
+        view.setFitWidth(30);
+        view.setFitHeight(30);
+        whitesCaptures.getChildren().add(view);
+    }
+    public static void updateBlackCaptures(Piece piece){
+        ImageView view = new ImageView(piece.getImage());
+        view.setFitWidth(30);
+        view.setFitHeight(30);
+        blacksCaptures.getChildren().add(view);
+    }
+
+    public static void removeCapturedPieces(){
+        whitesCaptures.getChildren().clear();
+        blacksCaptures.getChildren().clear();
 
     }
 
     public static void main(String[] args){
         launch();
+
 
 
     }

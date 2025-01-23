@@ -3,12 +3,16 @@ package com.example.chess;
 import com.example.chess.pieces.Pawn;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 public class Piece {
 
     public String name;
     public String color;
     public String imgPath;
     public Image image;
+
+    public ArrayList<Square> possibleSquares = new ArrayList<>();
 
 
 
@@ -44,6 +48,18 @@ public class Piece {
 //        return new Image(this.image.getUrl());
         return this.image;
     }
+
+    public ArrayList<Square> getPossibleSquares(){
+        return this.possibleSquares;
+    }
+
+ public void findPossibleSquares(Square square , ArrayList<Square> possibleSquares){
+
+ }
+
+
+
+
 
 
 

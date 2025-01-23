@@ -15,8 +15,23 @@ public class Square extends Button {
     public boolean occupied = false;
     public boolean isSelected = false;
 
+    //coordinates
+    public int x; //j (row starting from the top)
+    public int y; //i (column starting from the left)
 
 
+    public void setX(int x){
+        this.x=x;
+    }
+    public void setY(int y){
+        this.y=y;
+    }
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
+    }
 
 
     public boolean getIsLightSquare(){
@@ -34,7 +49,7 @@ public class Square extends Button {
 
     }
     public Piece getPiece(){
-        return new Piece(this.piece);
+        return new Piece(this.piece); //this may not need a defensive copy
     }
 
     public void displayImg(){

@@ -10,11 +10,7 @@ public class Pawn extends Piece {
 
     public Pawn(String color){
 
-
             super("pawn",color,color.equals("white")? wUrl: bUrl);
-
-
-
 
     }
 
