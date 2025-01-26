@@ -22,25 +22,39 @@ public class Rook extends Piece {
 
     //this method changes the pieces possibleMoves arraylist
 
+    @Override
     public void findPossibleSquares(Square square , ArrayList<Square> possibleSquares){
+        possibleSquares.clear();
         int x = square.getX();
         int y = square.getY();
 
         //up
+        System.out.println("rook");
 
-        for(int i =y;i>=0;i++){
+
+        //need to adjust the bounds in this method
+
+        for(int i =y+1;i>=0;i--){
             possibleSquares.add(Board.squares[x][i]);
-            Board.squares[x][i].setStyle("-fx-base: yellow");
+            Board.squares[x][i].setStyle("-fx-base: yellow;");
         }
 
         //down
+        for(int i =y;i<=7;i++){
+            possibleSquares.add(Board.squares[x][i]);
+            Board.squares[x][i].setStyle("-fx-base: yellow;");
+        }
 
         //left
+        for(int i =x;i>=0;i--){
+            possibleSquares.add(Board.squares[x][i]);
+            Board.squares[i][y].setStyle("-fx-base: yellow;");
+        }
 
         //right
-        for(int i=x;i>=7;i++){
-            possibleSquares.add(Board.squares[i][y]);
-            Board.squares[i][y].setStyle("-fx-base: yellow");
+        for(int i =y;i>=0;i--){
+            possibleSquares.add(Board.squares[x][i]);
+            Board.squares[x][i].setStyle("-fx-base: yellow;");
         }
 
 

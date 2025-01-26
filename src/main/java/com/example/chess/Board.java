@@ -146,15 +146,13 @@ public void initPieces(){
 
             squares[i][j].setOnMouseClicked(event -> movePiece(squares[finalI][finalJ]));
 
-            squares[5][2].setText("5 2");
-            squares[6][4].setText("6 4");
-            squares[5][4].setText("" + squares[5][4].getX() + " " + squares[5][4].getY());
         }
     }
 
     //init white pieces-------------------------------------------
     //white rooks
     squares[0][7].setPiece(new Rook("white"));
+
 
     squares[7][7].setPiece(new Rook("white"));
 
@@ -171,31 +169,32 @@ public void initPieces(){
     //white queen
     squares[3][7].setPiece(new Queen("white"));
 
+
     //white king
     squares[4][7].setPiece(new King("white"));
 
 
     //---------------------------------------------------------
     //init black pieces-------------------
-    //white rooks
+    //black rooks
     squares[0][0].setPiece(new Rook("black"));
 
     squares[7][0].setPiece(new Rook("black"));
 
-    //white knights
+    //black knights
     squares[1][0].setPiece(new Knight("black"));
 
     squares[6][0].setPiece(new Knight("black"));
-    //white bishops
+    //black bishops
     squares[2][0].setPiece(new Bishop("black"));
     squares[5][0].setPiece(new Bishop("black"));
-     //white queen
+     //black queen
     squares[3][0].setPiece(new Queen("black"));
-    //white king
+    //black king
     squares[4][0].setPiece(new King("black"));
 
 
-
+        squares[7][7].getPiece().findPossibleSquares(squares[7][7], squares[7][7].getPiece().getPossibleSquares());
 
 
 }
@@ -326,7 +325,9 @@ public void resetBoard(){
             return this.blackPlayer;
         }
 
-
+//        public static Square[][] getSquares(){
+//    return this.
+//        }
 
 
 

@@ -53,9 +53,7 @@ public class Piece {
         return this.possibleSquares;
     }
 
- public void findPossibleSquares(Square square , ArrayList<Square> possibleSquares){
 
- }
 
 
 
@@ -68,5 +66,7 @@ public class Piece {
     }
 
 
-
+    public void findPossibleSquares(Square square, ArrayList<Square> possibleSquares) {
+        System.out.println("piece");
+    }
 }

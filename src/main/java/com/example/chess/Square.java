@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 public class Square extends Button {
 
-    public Piece piece=null;
+    public Piece piece;
     public boolean isLightSquare = false;
     public boolean isClickable;
     public boolean occupied = false;
@@ -42,14 +42,14 @@ public class Square extends Button {
     }
 
     public void setPiece(Piece piece){
-        this.piece = new Piece(piece);
+        this.piece = piece;
         this.occupied = true;
         this.displayImg();
 
 
     }
     public Piece getPiece(){
-        return new Piece(this.piece); //this may not need a defensive copy
+        return this.piece; //this may not need a defensive copy
     }
 
     public void displayImg(){
