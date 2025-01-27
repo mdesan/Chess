@@ -144,7 +144,11 @@ public void initPieces(){
             int finalJ = j;
 
 
-            squares[i][j].setOnMouseClicked(event -> movePiece(squares[finalI][finalJ]));
+            squares[i][j].setOnMouseClicked(event -> {
+                movePiece(squares[finalI][finalJ]);
+                System.out.println("hi");
+
+            });
 
         }
     }
@@ -194,7 +198,7 @@ public void initPieces(){
     squares[4][0].setPiece(new King("black"));
 
 
-        squares[7][7].getPiece().findPossibleSquares(squares[7][7], squares[7][7].getPiece().getPossibleSquares());
+        squares[7][0].getPiece().findPossibleSquares(squares[7][0], squares[7][0].getPiece().getPossibleSquares());
 
 
 }

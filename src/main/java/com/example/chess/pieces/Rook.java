@@ -34,27 +34,27 @@ public class Rook extends Piece {
 
         //need to adjust the bounds in this method
 
-        for(int i =y+1;i>=0;i--){
+        for(int i =y-1;i>=0;i--){
             possibleSquares.add(Board.squares[x][i]);
             Board.squares[x][i].setStyle("-fx-base: yellow;");
         }
 
         //down
-        for(int i =y;i<=7;i++){
+        for(int i =y+1;i<=7;i++){
             possibleSquares.add(Board.squares[x][i]);
             Board.squares[x][i].setStyle("-fx-base: yellow;");
         }
 
         //left
-        for(int i =x;i>=0;i--){
+        for(int i =x-1;i>=0;i--){
             possibleSquares.add(Board.squares[x][i]);
             Board.squares[i][y].setStyle("-fx-base: yellow;");
         }
 
         //right
-        for(int i =y;i>=0;i--){
+        for(int i =x+1;i<=7;i++){
             possibleSquares.add(Board.squares[x][i]);
-            Board.squares[x][i].setStyle("-fx-base: yellow;");
+            Board.squares[i][y].setStyle("-fx-base: yellow;");
         }
 
 
